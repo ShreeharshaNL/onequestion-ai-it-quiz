@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-const API_URL = "/api/question";
+const API_URL = "https://onequestion-backend.onrender.com";
 
 function Quiz() {
   const [question, setQuestion] = useState(null);
@@ -18,7 +18,7 @@ function Quiz() {
     setIsFetchingNext(preserveSelection);
 
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(`${API_URL}/api/question`);
 
       if (!response.ok) {
         throw new Error("Could not load a question.");
