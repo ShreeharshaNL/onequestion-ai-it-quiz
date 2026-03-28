@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-const API_URL = "https://onequestion-backend.onrender.com";
+const API_URL = "https://onequestion-ai-it-quiz.onrender.com";
 
 function Quiz() {
   const [question, setQuestion] = useState(null);
