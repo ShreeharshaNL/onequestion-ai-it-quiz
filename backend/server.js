@@ -25,7 +25,7 @@ app.get("/api/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-app.use("/api/question", questionRouter);
+app.use("/api", questionRouter);
 
 app.use((err, _req, res, _next) => {
   console.error("Unhandled server error:", err);

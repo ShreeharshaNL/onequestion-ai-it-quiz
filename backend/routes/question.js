@@ -3,7 +3,7 @@ import { getQuestion, getQuestionStatus } from "../controllers/questionControlle
 
 const router = express.Router();
 
-router.get("/", getQuestion);
-router.get("/status", getQuestionStatus);
+router.get("/question", getQuestion);
+router.get("/question/status", getQuestionStatus);
 
 export default router;
