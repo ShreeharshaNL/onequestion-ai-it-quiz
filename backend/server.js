@@ -14,6 +14,10 @@ initializeClient();
 const app = express();
 const PORT = Number(process.env.PORT || 5000);
 
+app.get("/", (req, res) => {
+  res.send("SERVER RUNNING ✅");
+});
+
 app.use(
   cors({
     origin: "*", // keep simple for now
@@ -38,9 +42,13 @@ app.use((err, _req, res, _next) => {
   });
 });
 
-app.listen(PORT, async () => {
+app.listen(PORT, () => {
   console.log(`Backend listening on http://localhost:${PORT}`);
 
-  await ensureQuestionPool();
+  // Run async safely (DO NOT block server startup)
+  ensureQuestionPool().catch((err) => {
+    console.error("Initial pool error:", err.message);
+  });
+
   startQuestionPoolRefillJob();
 });

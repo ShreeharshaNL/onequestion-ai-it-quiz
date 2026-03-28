@@ -8,5 +8,5 @@ router.get("/", getQuestion);
 
 // optional
 router.get("/status", getQuestionStatus);
-
+console.log("✅ Question routes loaded");
 export default router;
