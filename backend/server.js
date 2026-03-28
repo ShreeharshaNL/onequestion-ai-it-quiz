@@ -16,17 +16,21 @@ const PORT = Number(process.env.PORT || 5000);
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN?.split(",").map((origin) => origin.trim()) || "*",
-  }),
+    origin: "*", // keep simple for now
+  })
 );
+
 app.use(express.json());
 
+// Health check
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-app.use("/api", questionRouter);
+// ✅ MAIN ROUTE
+app.use("/api/question", questionRouter);
 
+// Error handler
 app.use((err, _req, res, _next) => {
   console.error("Unhandled server error:", err);
   res.status(500).json({
@@ -40,4 +44,3 @@ app.listen(PORT, async () => {
   await ensureQuestionPool();
   startQuestionPoolRefillJob();
 });
-
